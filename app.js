@@ -1,18 +1,16 @@
-// Load the http module to create an HTTP server.
-const http = require('http');
+import express from "express";
 
-// Configure the HTTP server to respond with "Hello, World!"
-const server = http.createServer((req, res) => {
-  res.statusCode = 200; // HTTP status code 200 = OK
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello, World!\n');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.send('Welcome to my server!');
 });
 
-// Set the port and hostname where the server will listen
-const PORT = 3000;
-const HOSTNAME = '127.0.0.1'; // Localhost
+app.get('/hc', (req, res) => {
+  res.send('ok');
+});
 
-// Start the server and listen for requests
-server.listen(PORT, HOSTNAME, () => {
-  console.log(`Server running at http://${HOSTNAME}:${PORT}/`);
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
